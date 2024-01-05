@@ -2,9 +2,11 @@ import requests
 import json
 
 
-def get_data(name):
-    req = requests.get(
-        f"https://superheroapi.com/api/2527790687387610/search/{name}"
-    )
-    data = json.loads(req.text)
-    return data
+class Superhero:
+    def __init__(self, api_key):
+        self.search_url = f"https://superheroapi.com/api/{api_key}/search/"
+    
+    def get_data(self, name):
+        req = requests.get(f"{self.search_url}{name}")
+        data = json.loads(req.text)
+        return data

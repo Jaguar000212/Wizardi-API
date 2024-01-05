@@ -1,9 +1,13 @@
 from flask import Flask, request, jsonify, render_template
 
 from api import chatbot_api, superhero_api, popcat_api
+from config.config import API_Keys
 
+api_keys = API_Keys()
 
-
+chatbot_api = chatbot_api.openAIChatbot(api_keys.openAI_key)
+superhero_api = superhero_api.Superhero(api_keys.superhero_key)
+popcat_api = popcat_api.popCat()
 app = Flask("Wizardi API")
 
 
@@ -72,4 +76,6 @@ def quote():
 
 @app.route('/shower-thoughts', methods=['GET'])
 def shower_thoughts():
-    return popcat_api.shower_thoughts()  
+    return popcat_api.shower_thoughts()
+
+app.run(debug=True)
