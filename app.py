@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 
-from api import chatbot_api, superhero_api, popcat_api
+from api import *
 from config.config import API_Keys
 
 api_keys = API_Keys()
@@ -8,6 +8,8 @@ api_keys = API_Keys()
 chatbot_api = chatbot_api.openAIChatbot(api_keys.openAI_key)
 superhero_api = superhero_api.Superhero(api_keys.superhero_key)
 popcat_api = popcat_api.popCat()
+anime_api = anime_api.Anime()
+
 app = Flask("Wizardi API")
 
 
@@ -22,6 +24,11 @@ app.endpoint('lulcat')
 app.endpoint('weather')
 app.endpoint('quote')
 app.endpoint('shower_thoughts')
+app.endpoint('anime')
+app.endpoint('anime_character')
+app.endpoint('anime_news')
+app.endpoint('anime_waifu')
+
 
 
 @app.route('/')
@@ -77,5 +84,25 @@ def quote():
 @app.route('/shower-thoughts', methods=['GET'])
 def shower_thoughts():
     return popcat_api.shower_thoughts()
+
+@app.route('/anime/info', methods=['GET'])
+def anime():
+    name = request.args.get('name')
+    return jsonify(anime_api.animeData(name))
+
+@app.route('/anime/character', methods=['GET'])
+def anime_character():
+    name = request.args.get('name')
+    return jsonify(anime_api.animeCharacter(name))
+
+@app.route('/anime/news', methods=['GET'])
+def anime_news():
+    return jsonify(anime_api.animeNews())
+
+@app.route('/anime/waifu', methods=['GET'])
+def anime_waifu():
+    kind = request.args.get('kind')
+    return anime_api.animeWaifu(kind)
+    
 
 app.run(debug=True)

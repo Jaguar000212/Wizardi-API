@@ -8,5 +8,4 @@ class Superhero:
     
     def get_data(self, name):
         req = requests.get(f"{self.search_url}{name}")
-        data = json.loads(req.text)
-        return data
+        return req.json()

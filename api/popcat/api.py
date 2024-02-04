@@ -3,7 +3,7 @@ import json
 
 class popCat:
     
-    @classmethod
+    @staticmethod
     def element_data(name):
         req = requests.get(
             f"https://api.popcat.xyz/periodic-table?element={name}"
@@ -11,7 +11,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
-    @classmethod
+    @staticmethod
     def pickup_lines():
         req = requests.get(
             f"https://api.popcat.xyz/pickuplines"
@@ -19,7 +19,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
-    @classmethod
+    @staticmethod
     def meme():
         req = requests.get(
             f"https://api.popcat.xyz/meme"
@@ -27,6 +27,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
+    @staticmethod
     def joke():
         req = requests.get(
             f"https://api.popcat.xyz/joke"
@@ -34,7 +35,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
-    @classmethod
+    @staticmethod
     def fact():
         req = requests.get(
             f"https://api.popcat.xyz/fact"
@@ -42,7 +43,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
-    @classmethod
+    @staticmethod
     def lulcat(text):
         req = requests.get(
             f"https://api.popcat.xyz/lulcat?text={text}"
@@ -50,7 +51,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
-    @classmethod
+    @staticmethod
     def weather(city):
         req = requests.get(
             f"https://api.popcat.xyz/weather?q={city}"
@@ -58,7 +59,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
-    @classmethod
+    @staticmethod
     def quote():
         req = requests.get(
             f"https://api.popcat.xyz/quote"
@@ -66,7 +67,7 @@ class popCat:
         data = json.loads(req.text)
         return data
 
-    @classmethod
+    @staticmethod
     def shower_thoughts():
         req = requests.get(
             f"https://api.popcat.xyz/showerthoughts"
